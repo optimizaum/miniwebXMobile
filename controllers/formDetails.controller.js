@@ -12,7 +12,7 @@ export const createOrUpdateUserProfile = async (req, res) => {
    
     // Handle file uploads (logo & banner)
     let logo = userProfile?.logo || "";
-    let banner = userProfile?.banner || [];
+    let banner = JSON.parse(userProfile?.banner) || [];
     
     if (req.files["logo"]) {
       logo =  `${req.protocol}://${req.get("host")}/api/uploads/${req.files["logo"][0].filename}`; // Get logo file path
