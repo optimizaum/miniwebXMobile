@@ -13,13 +13,13 @@ export const createOrUpdateUserProfile = async (req, res) => {
     // Handle file uploads (logo & banner)
     let logo = userProfile?.logo || "";
     let banner = userProfile?.banner || [];
-
+    
     if (req.files["logo"]) {
-      logo = req.files["logo"][0].path; // Get logo file path
+      logo =  `${req.protocol}://${req.get("host")}/uploads/${req.files["logo"][0].filename}`; // Get logo file path
     }
 
     if (req.files["banner"]) {
-      banner = req.files["banner"].map((file) => file.path); // Get banner image paths
+      banner = req.files["banner"].map((file) => `${req.protocol}://${req.get("host")}/uploads/${file.filename}`); // Get banner image paths
     }
 
     // If profile exists, update it
