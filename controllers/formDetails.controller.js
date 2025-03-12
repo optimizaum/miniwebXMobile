@@ -9,7 +9,7 @@ export const createOrUpdateUserProfile = async (req, res) => {
 
     // Check if user profile exists
     let userProfile = await UserProfile.findOne({ userId });
-
+   
     // Handle file uploads (logo & banner)
     let logo = userProfile?.logo || "";
     let banner = userProfile?.banner || [];
@@ -31,6 +31,7 @@ export const createOrUpdateUserProfile = async (req, res) => {
       );
     } else {
       // Create a new profile
+  
       userProfile = await UserProfile.create({
         userId,
         name,
@@ -46,7 +47,7 @@ export const createOrUpdateUserProfile = async (req, res) => {
         address
       });
     }
-
+    console.log("user id");
     res.status(200).json({ success: true, data: userProfile });
   } catch (error) {
     console.error(error);

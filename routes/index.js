@@ -10,13 +10,13 @@ router.post('/verified',verifyOTP)
 router.post('/login',userLogin)
 
 router.post(
-    "/formdetails/:userId",auth,
+    "/formdetails/:userId",
     upload.fields([{ name: "logo", maxCount: 1 }, { name: "banner", maxCount: 5 }]),
     createOrUpdateUserProfile
   );
   
   // ✅ Get Profile by userId
-  router.get("/formdetails/:userId", auth,getUserProfile);
+  router.get("/formdetails/:userId",getUserProfile);
   
   // ✅ Delete Profile
   router.delete("/:userId",auth, deleteUserProfile);
