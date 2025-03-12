@@ -5,7 +5,7 @@ import UserProfile from "../models/minwebtemplate.model.js";
 export const createOrUpdateUserProfile = async (req, res) => {
   try {
     const { userId } = req.params;
-    const {  name, position, aboutUs, call, whatsapp, email, website } = req.body;
+    const {  name, position, aboutUs, call, whatsapp, email, website,address,socialLinks} = req.body;
 
     // Check if user profile exists
     let userProfile = await UserProfile.findOne({ userId });
@@ -26,7 +26,7 @@ export const createOrUpdateUserProfile = async (req, res) => {
     if (userProfile) {
       userProfile = await UserProfile.findOneAndUpdate(
         { userId },
-        { name, position, aboutUs, call, whatsapp, email, website, logo, banner },
+        { name, position, aboutUs, call, whatsapp, email, website, logo, banner,address,socialLinks },
         { new: true }
       );
     } else {
@@ -41,7 +41,9 @@ export const createOrUpdateUserProfile = async (req, res) => {
         email,
         website,
         logo,
-        banner
+        banner,
+        socialLinks,
+        address
       });
     }
 

@@ -16,7 +16,7 @@ router.post(
   );
   
   // ✅ Get Profile by userId
-  router.get("/:userId", auth,getUserProfile);
+  router.get("/formdetails/:userId", auth,getUserProfile);
   
   // ✅ Delete Profile
   router.delete("/:userId",auth, deleteUserProfile);

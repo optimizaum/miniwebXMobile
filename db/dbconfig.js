@@ -6,7 +6,7 @@ const red = '\x1b[31m%s\x1b[0m';
 
  const connectDB = async ()=>{
     try {
-        const result = await mongoose.connect("mongodb://localhost:27017/miniMobileX");
+        const result = await mongoose.connect("mongodb+srv://vanshdeep703:e2zbyjAZ4j2KrnYO@cluster0.en37d.mongodb.net/");
        
         if(result){
             console.log("connected to the database")

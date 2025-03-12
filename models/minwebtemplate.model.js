@@ -3,7 +3,8 @@ const SocialLinksSchema = new mongoose.Schema({
     facebook: { type: String, default: "" },
     instagram: { type: String, default: "" },
     youtube: { type: String, default: "" },
-    linkedIn: { type: String, default: "" }
+    linkedIn: { type: String, default: "" },
+    googleMap:{ type:String, default: "" },
   });
 const UserProfileSchema=new mongoose.Schema({
    userId:{
@@ -21,6 +22,7 @@ const UserProfileSchema=new mongoose.Schema({
    whatsapp: { type: String, required: true },
    email: { type: String, required: true, unique: true },
    website: { type: String, default: "" },
+   address: { type: String, default: "" },
 },{timestamps:true})
 
 const UserProfile = mongoose.model("UserProfile", UserProfileSchema);
