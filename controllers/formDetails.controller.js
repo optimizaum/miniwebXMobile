@@ -15,11 +15,11 @@ export const createOrUpdateUserProfile = async (req, res) => {
     let banner = userProfile?.banner || [];
     
     if (req.files["logo"]) {
-      logo =  `${req.protocol}://${req.get("host")}/uploads/${req.files["logo"][0].filename}`; // Get logo file path
+      logo =  `${req.protocol}://${req.get("host")}/api/uploads/${req.files["logo"][0].filename}`; // Get logo file path
     }
 
     if (req.files["banner"]) {
-      banner = req.files["banner"].map((file) => `${req.protocol}://${req.get("host")}/uploads/${file.filename}`); // Get banner image paths
+      banner = req.files["banner"].map((file) => `${req.protocol}://${req.get("host")}/api/uploads/${file.filename}`); // Get banner image paths
     }
 
     // If profile exists, update it
