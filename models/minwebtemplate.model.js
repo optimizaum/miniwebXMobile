@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const SocialLinksSchema = new mongoose.Schema({
-    facebook: { type: String, default: "" },
-    instagram: { type: String, default: "" },
+    facebook: { type: String, default: "" ,required:true},
+    instagram: { type: String, default: "" ,required:true},
     youtube: { type: String, default: "" },
     linkedIn: { type: String, default: "" },
     googleMap:{ type:String, default: "" },

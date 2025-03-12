@@ -6,7 +6,7 @@ export const createOrUpdateUserProfile = async (req, res) => {
   try {
     const { userId } = req.params;
     const {  name, position, aboutUs, call, whatsapp, email, website,address,socialLinks} = req.body;
-
+    socialLinks = JSON.parse(socialLinks);
     // Check if user profile exists
     let userProfile = await UserProfile.findOne({ userId });
    
