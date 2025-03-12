@@ -48,7 +48,8 @@ export const createOrUpdateUserProfile = async (req, res) => {
       });
     }
     console.log("user id");
-    res.status(200).json({ success: true, data: userProfile });
+     const minWebSitLink=`https://miniwebx.com/?userId=${userId}`
+    res.status(200).json({ success: true, data: userProfile,minWebSitLink });
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, message: "Server error" });

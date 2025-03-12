@@ -20,7 +20,7 @@ const UserProfileSchema=new mongoose.Schema({
    aboutUs: { type: String, required: true },
    call: { type: String, required: true },
    whatsapp: { type: String, required: true },
-   email: { type: String, required: true, unique: true },
+   email: { type: String, required: true },
    website: { type: String, default: "" },
    address: { type: String, default: "" },
 },{timestamps:true})
