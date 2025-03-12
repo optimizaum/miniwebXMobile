@@ -17,7 +17,7 @@ app.get('/',(req,res)=>{
      })
 
 app.use("/api",index)
-app.listen(process.env.PORT,(err)=>{
+app.listen(process.env.PORT || 7000,(err)=>{
     if(err) throw err;
     console.log(`Server is running on port ${process.env.PORT}`);
 })
