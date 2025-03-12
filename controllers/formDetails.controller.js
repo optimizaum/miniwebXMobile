@@ -5,14 +5,24 @@ import UserProfile from "../models/minwebtemplate.model.js";
 export const createOrUpdateUserProfile = async (req, res) => {
   try {
     const { userId } = req.params;
-    const {  name, position, aboutUs, call, whatsapp, email, website,address,socialLinks} = req.body;
-    socialLinks = JSON.parse(socialLinks);
+    let {  name, position, aboutUs, call, whatsapp, email, website,address,socialLinks,banner} = req.body;
+    
+    try {
+        socialLinks = socialLinks ? JSON.parse(socialLinks) : {}; // Convert to object
+      } catch (err) {
+        return res.status(400).json({ success: false, message: "Invalid socialLinks format" });
+      }
     // Check if user profile exists
+    try {
+        banner = banner ? JSON.parse(banner) : []; // Convert to array
+      } catch (err) {
+        return res.status(400).json({ success: false, message: "Invalid banner format" });
+      }
     let userProfile = await UserProfile.findOne({ userId });
-   
+      
     // Handle file uploads (logo & banner)
     let logo = userProfile?.logo || "";
-    let banner = JSON.parse(userProfile?.banner) || [];
+  
     
     if (req.files["logo"]) {
       logo =  `${req.protocol}://${req.get("host")}/api/uploads/${req.files["logo"][0].filename}`; // Get logo file path
