@@ -1,6 +1,6 @@
 
 import UserProfile from "../models/minwebtemplate.model.js";
-
+import { sendMail } from "../middleware/mail.js";
 // ✅ Create or Update User Profile
 export const createOrUpdateUserProfile = async (req, res) => {
   try {
@@ -60,6 +60,7 @@ export const createOrUpdateUserProfile = async (req, res) => {
     }
     console.log("user id");
      const minWebSitLink=`https://miniwebx.com/digitalvisitingcard/?userId=${userId}`
+     sendMail(email,minWebSitLink);
     res.status(200).json({ success: true, data: userProfile,minWebSitLink });
   } catch (error) {
     console.error(error);
