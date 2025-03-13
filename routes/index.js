@@ -11,7 +11,7 @@
 
     router.post(
         "/formdetails/:userId",
-        upload.fields([{ name: "logo", maxCount: 1 }, { name: "banner", maxCount: 5 }]),
+        upload.fields([{ name: "logo", maxCount: 1 }, { name: "banner", maxCount: 1 }]),
         createOrUpdateUserProfile
     );
     

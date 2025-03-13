@@ -14,6 +14,7 @@ export const createOrUpdateUserProfile = async (req, res) => {
       }
     // Check if user profile exists
     try {
+      console.log(banner);
         banner = banner ? JSON.parse(banner) : []; // Convert to array
       } catch (err) {
         return res.status(400).json({ success: false, message: "Invalid banner format" });
@@ -58,7 +59,7 @@ export const createOrUpdateUserProfile = async (req, res) => {
       });
     }
     console.log("user id");
-     const minWebSitLink=`https://miniwebx.com/?userId=${userId}`
+     const minWebSitLink=`${req.protocol}://${req.get("host")}/?userId=${userId}`
     res.status(200).json({ success: true, data: userProfile,minWebSitLink });
   } catch (error) {
     console.error(error);
