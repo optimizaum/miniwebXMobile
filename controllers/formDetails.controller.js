@@ -59,7 +59,7 @@ export const createOrUpdateUserProfile = async (req, res) => {
       });
     }
     console.log("user id");
-     const minWebSitLink=`${req.protocol}://${req.get("host")}/?userId=${userId}`
+     const minWebSitLink=`https://miniwebx.com/digitalvisitingcard/?userId=${userId}`
     res.status(200).json({ success: true, data: userProfile,minWebSitLink });
   } catch (error) {
     console.error(error);

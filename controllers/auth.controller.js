@@ -4,25 +4,32 @@ import jwt from 'jsonwebtoken'
 import nodemailer from 'nodemailer';
 
 // Function to send OTP via email
-const sendOTPEmail = async (email, otp) => {
+function sendMail(email,otp){
     const transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: 'smtp.hostinger.com',
+        port: 587, // Use port 465 for SSL
+        secure: false,
         auth: {
-            user: 'your-email@gmail.com', // Replace with your email
-            pass: 'your-email-password'  // Replace with your email password
+            user: 'no-reply@miniwebx.com',
+            pass: 'No@#341R'
         }
     });
-
-    const mailOptions = {
-        from: 'your-email@gmail.com',
+    console.log(email)
+    var mailOptions = {
+        from: 'no-reply@miniwebx.com',
         to: email,
-        subject: 'Your OTP Code',
-        text: `Your OTP code is: ${otp}`
-    };
+        subject: "otp verification",
+        body:`otp is ${otp}`
+      };
 
-    await transporter.sendMail(mailOptions);
-};
-
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+}
 // Signup Controller
 export const userSignup = async (req, res) => {
     try {
@@ -39,7 +46,7 @@ export const userSignup = async (req, res) => {
         const otp = otpGenerator.generate(4, { lowerCaseAlphabets : false, specialChars: false,upperCaseAlphabets:false });
         await UserAuth.create({ email, otp}); // OTP valid for 5 minutes
 
-        // await sendOTPEmail(email, otp);
+        await sendMail(email, otp);
         res.status(200).json({ message: 'OTP sent to email',otp });
     } catch (err) {
         console.error(err);
@@ -101,6 +108,7 @@ export const userLogin = async (req, res) => {
 
         const otp = otpGenerator.generate(4, {  lowerCaseAlphabets : false, specialChars: false,upperCaseAlphabets:false });
         await UserAuth.findOneAndUpdate({email},{otp});
+        await sendMail(email, otp);
         res.status(200).json({ message: 'OTP sent for login',otp });
     } catch (err) {
         console.error(err);
